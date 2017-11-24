@@ -1,14 +1,39 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { DrawerNavigator } from 'react-navigation';
+
+const HomeScreen = ({ navigation }) => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Home Screen</Text>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('DrawerToggle')}
+      title="Open Drawer"
+    ><Text>Press me!</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+const ProfileScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Profile Screen</Text>
+  </View>
+);
+
+const RootDrawer = DrawerNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+  Profile: {
+    screen: ProfileScreen,
+  },
+});
+
+
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+        <RootDrawer />
     );
   }
 }
