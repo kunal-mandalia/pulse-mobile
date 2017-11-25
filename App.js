@@ -3,29 +3,33 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
 import CoreLayout from './components/CoreLayout'
 
-const HomeScreen = ({ navigation }) => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Home Screen</Text>
-    <TouchableOpacity
-      onPress={() => navigation.navigate('DrawerToggle')}
-      title="Open Drawer"
-    ><Text>Press me!</Text>
-    </TouchableOpacity>
-  </View>
+const PulseDebugerScreen = ({ navigation }) => (
+  <CoreLayout title='Pulse debugger' toggleMenu={() => navigation.navigate('DrawerToggle')}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('DrawerToggle')}
+        title="Open Drawer"
+      ><Text>Press me!</Text>
+      </TouchableOpacity>
+    </View>
+  </CoreLayout>
 );
 
-const ProfileScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Profile Screen</Text>
-  </View>
+const OptionsScreen = ({ navigation }) => (
+  <CoreLayout title='Options' toggleMenu={() => navigation.navigate('DrawerToggle')}>  
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Profile Screen</Text>
+    </View>
+  </CoreLayout>
 );
 
 const RootDrawer = DrawerNavigator({
-  Home: {
-    screen: HomeScreen,
+  'Pulse debugger': {
+    screen: PulseDebugerScreen,
   },
-  Profile: {
-    screen: ProfileScreen,
+  'Options': {
+    screen: OptionsScreen,
   },
 });
 
@@ -34,9 +38,7 @@ const RootDrawer = DrawerNavigator({
 export default class App extends React.Component {
   render() {
     return (
-        <CoreLayout>
-          <RootDrawer />
-        </CoreLayout>
+      <RootDrawer />
     );
   }
 }
