@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
+import CoreLayout from './components/CoreLayout'
 
 const HomeScreen = ({ navigation }) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -33,7 +34,9 @@ const RootDrawer = DrawerNavigator({
 export default class App extends React.Component {
   render() {
     return (
-        <RootDrawer />
+        <CoreLayout>
+          <RootDrawer />
+        </CoreLayout>
     );
   }
 }
