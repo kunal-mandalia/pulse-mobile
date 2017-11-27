@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 // import PropTypes from 'prop-types'
 
 class CoreLayout extends Component {
@@ -18,7 +18,7 @@ class CoreLayout extends Component {
             <TouchableOpacity
               onPress={toggleMenu}
             >
-              <FontAwesome name='bars' size={20} color='black' />
+              <Feather name='navigation' size={20} color='black' />
             </TouchableOpacity>
           </View>
           <View style={styles.title}>
@@ -39,12 +39,13 @@ const styles = StyleSheet.create({
   },
   navbar: {
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
+    // backgroundColor: '#f5f5f5',
     marginTop: 22,
     padding: 14,
+    borderBottomWidth: 1,
+    borderColor: '#f5f5f5',
   },
   menu: {
-    height: '100%',
     flex: 1,
     justifyContent: 'center',
     alignSelf: 'flex-start',

@@ -10,7 +10,7 @@ import CoreLayout from './CoreLayout'
 
 const Options = ({ navigation }) => {
   return (
-    <CoreLayout title='Pulse debugger' toggleMenu={() => navigation.navigate('DrawerToggle')}>
+    <CoreLayout title='Options' toggleMenu={() => navigation.navigate('DrawerToggle')}>
       <Text>Options screen</Text>
     </CoreLayout>
   )
