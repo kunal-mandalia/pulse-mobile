@@ -1,48 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
-
-const HomeScreen = ({ navigation }) => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Home Screen</Text>
-    <TouchableOpacity
-      onPress={() => navigation.navigate('DrawerToggle')}
-      title="Open Drawer"
-    ><Text>Press me!</Text>
-    </TouchableOpacity>
-  </View>
-);
-
-const ProfileScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Profile Screen</Text>
-  </View>
-);
+import CoreLayout from './components/CoreLayout'
+import PulseDebugger from './components/PulseDebugger'
+import Options from './components/Options'
 
 const RootDrawer = DrawerNavigator({
-  Home: {
-    screen: HomeScreen,
+  'Pulse debugger': {
+    screen: PulseDebugger,
+    // todo: pass events as props
   },
-  Profile: {
-    screen: ProfileScreen,
+  'Options': {
+    screen: Options,
   },
-});
-
-
+})
 
 export default class App extends React.Component {
   render() {
     return (
-        <RootDrawer />
+      <RootDrawer />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
