@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 // import PropTypes from 'prop-types'
 
 class CoreLayout extends Component {
@@ -18,7 +18,7 @@ class CoreLayout extends Component {
             <TouchableOpacity
               onPress={toggleMenu}
             >
-              <Feather name='navigation' size={20} color='black' />
+              <Ionicons name='ios-pulse-outline' size={24} color='black' />
             </TouchableOpacity>
           </View>
           <View style={styles.title}>

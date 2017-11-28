@@ -7,12 +7,47 @@ import {
   FlatList,
 } from 'react-native'
 import CoreLayout from './CoreLayout'
-import { upperCase } from 'change-case';
+import io from 'socket.io-client'
+import { pluralise } from '../utils/helper'
 
 class PulseDebugger extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      connections: 0,
+      events: [],
+      socket: null,
+    }
+    // this.listenIO = this.listenIO.bind(this)
   }
+
+  componentDidMount () {
+    const socket = io('https://pulse-server-km.herokuapp.com')
+    this.setState({ socket })    
+    
+    socket.on('connectionCount', (connectionCount) => {
+      this.setState({ connections: connectionCount })
+    })
+    socket.on('event', (data) => {
+      this.setState(state => ({
+        events: [data, ...state.events],
+        connections: data.connectionCount,
+      }))
+    })
+  }
+
+  // listenIO () {
+  //   const socket = io('https://pulse-server-km.herokuapp.com')
+  //   socket.on('connectionCount', (connectionCount) => {
+  //     this.setState({ connections: connectionCount })
+  //   })
+  //   socket.on('event', (data) => {
+  //     this.setState(state => ({
+  //       events: [data, ...state.events],
+  //       connections: data.connectionCount,
+  //     }))
+  //   })
+  // }
 
   _renderItem = ({ item }) => {
     const d = new Date(item.timestamp)
@@ -30,19 +65,18 @@ class PulseDebugger extends Component {
     )
   }
 
-  _keyExtractor = item => item.value
+  _keyExtractor = item => item.timestamp
 
   _itemSeparatorComponent = () => <View style={styles.separator} />
 
   render () {
     const { navigation } = this.props
-    const events = [
-      { type: 'page', value: '/', timestamp: Date.now() },
-      { type: 'event', value: 'Button Clicked', timestamp: Date.now() },
-      { type: 'page', value: '/about', timestamp: Date.now() },
-    ]
+    const { connections, events } = this.state
     return (
       <CoreLayout title='Pulse' toggleMenu={() => navigation.navigate('DrawerToggle')}>
+        <View style={styles.connectionsContainer}>
+          <Text style={styles.connectionText}>{connections} {pluralise('connection', connections)}</Text>
+        </View>
         <View style={styles.listContainer}>
           <FlatList
             style={styles.list}
@@ -55,9 +89,24 @@ class PulseDebugger extends Component {
       </CoreLayout>
     )
   }
+
+  componentWillUnmount () {
+    const { socket } = this.state
+    socket.close()
+  }
 }
 
 const styles = StyleSheet.create({
+  connectionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 6,
+    borderBottomWidth: 1,
+    borderColor: '#f5f5f5',
+  },
+  connectionText: {
+    fontSize: 12, 
+  },
   listContainer: {
     flex: 1,
     flexDirection: 'row',
