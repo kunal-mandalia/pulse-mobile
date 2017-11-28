@@ -5,10 +5,9 @@ import CoreLayout from './components/CoreLayout'
 import PulseDebugger from './components/PulseDebugger'
 import Options from './components/Options'
 
-const RootDrawer = DrawerNavigator({
+export const RootDrawer = DrawerNavigator({
   'Pulse debugger': {
     screen: PulseDebugger,
-    // todo: pass events as props
   },
   'Options': {
     screen: Options,
