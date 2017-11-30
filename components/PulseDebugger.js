@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
+  ActivityIndicator,
 } from 'react-native'
 import CoreLayout from './CoreLayout'
 import io from 'socket.io-client'
@@ -69,6 +70,13 @@ class PulseDebugger extends Component {
 
   _itemSeparatorComponent = () => <View style={styles.separator} />
 
+  _listEmptyComponent = () => (
+    <View style={styles.listEmptyContainer}>
+      <ActivityIndicator size='large' />
+      <Text style={styles.note}>Listening for events</Text>
+    </View>
+  )
+
   render () {
     const { navigation } = this.props
     const { connections, events } = this.state
@@ -84,6 +92,7 @@ class PulseDebugger extends Component {
             renderItem={this._renderItem}
             keyExtractor={this._keyExtractor}
             ItemSeparatorComponent={this._itemSeparatorComponent}
+            ListEmptyComponent={this._listEmptyComponent}
             />
         </View>
       </CoreLayout>
@@ -103,6 +112,17 @@ const styles = StyleSheet.create({
     padding: 6,
     borderBottomWidth: 1,
     borderColor: '#f5f5f5',
+  },
+  listEmptyContainer: {
+    flexDirection: 'column',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 400,
+  },
+  note: {
+    margin: 10,
+    color: 'grey',
   },
   connectionText: {
     fontSize: 12, 

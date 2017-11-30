@@ -3,14 +3,14 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
 import CoreLayout from './components/CoreLayout'
 import PulseDebugger from './components/PulseDebugger'
-import Options from './components/Options'
+import About from './components/About'
 
 export const RootDrawer = DrawerNavigator({
   'Pulse debugger': {
     screen: PulseDebugger,
   },
-  'Options': {
-    screen: Options,
+  'About': {
+    screen: About,
   },
 })
 
