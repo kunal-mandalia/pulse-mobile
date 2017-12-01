@@ -6,7 +6,7 @@ import {
   StyleSheet
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class CoreLayout extends Component {
   render () {
@@ -16,13 +16,14 @@ class CoreLayout extends Component {
         <View style={styles.navbar}>
           <View style={styles.menu}>
             <TouchableOpacity
+              className='toggle-menu'
               onPress={toggleMenu}
             >
               <Ionicons name='ios-pulse-outline' size={24} color='black' />
             </TouchableOpacity>
           </View>
           <View style={styles.title}>
-            <Text style={styles.titleItem}>{title}</Text>
+            <Text className='title' style={styles.titleItem}>{title}</Text>
           </View>
         </View>
         <View style={styles.node}>
@@ -39,7 +40,6 @@ const styles = StyleSheet.create({
   },
   navbar: {
     justifyContent: 'center',
-    // backgroundColor: '#f5f5f5',
     marginTop: 22,
     padding: 14,
     borderBottomWidth: 1,
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
   }
 })
 
-// CoreLayout.propTypes = {
-//   navigation: PropTypes.func.isRequired,
-
-// }
+CoreLayout.propTypes = {
+  title: PropTypes.string.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+}
 
 export default CoreLayout

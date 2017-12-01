@@ -19,7 +19,6 @@ class PulseDebugger extends Component {
       events: [],
       socket: null,
     }
-    // this.listenIO = this.listenIO.bind(this)
   }
 
   componentDidMount () {
@@ -36,19 +35,6 @@ class PulseDebugger extends Component {
       }))
     })
   }
-
-  // listenIO () {
-  //   const socket = io('https://pulse-server-km.herokuapp.com')
-  //   socket.on('connectionCount', (connectionCount) => {
-  //     this.setState({ connections: connectionCount })
-  //   })
-  //   socket.on('event', (data) => {
-  //     this.setState(state => ({
-  //       events: [data, ...state.events],
-  //       connections: data.connectionCount,
-  //     }))
-  //   })
-  // }
 
   _renderItem = ({ item }) => {
     const d = new Date(item.timestamp)
@@ -71,8 +57,8 @@ class PulseDebugger extends Component {
   _itemSeparatorComponent = () => <View style={styles.separator} />
 
   _listEmptyComponent = () => (
-    <View style={styles.listEmptyContainer}>
-      <ActivityIndicator size='large' />
+    <View className='empty-list' style={styles.listEmptyContainer}>
+      <ActivityIndicator />
       <Text style={styles.note}>Listening for events</Text>
     </View>
   )
@@ -80,12 +66,13 @@ class PulseDebugger extends Component {
   render () {
     const { navigation } = this.props
     const { connections, events } = this.state
+    const hasEvents = events.length > 0
     return (
       <CoreLayout title='Pulse' toggleMenu={() => navigation.navigate('DrawerToggle')}>
         <View style={styles.connectionsContainer}>
           <Text style={styles.connectionText}>{connections} {pluralise('connection', connections)}</Text>
         </View>
-        <View style={styles.listContainer}>
+        <View style={[styles.listContainer, {alignItems: hasEvents ? 'flex-start' : 'center'}]}>
           <FlatList
             style={styles.list}
             data={events}
@@ -114,11 +101,8 @@ const styles = StyleSheet.create({
     borderColor: '#f5f5f5',
   },
   listEmptyContainer: {
-    flexDirection: 'column',
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 400,
+    alignSelf: 'center',
   },
   note: {
     margin: 10,
@@ -131,7 +115,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'flex-start',
   },
   row: {
     flex: 1,
