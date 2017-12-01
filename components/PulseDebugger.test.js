@@ -10,8 +10,21 @@ import renderer from 'react-test-renderer'
 
 
 describe(`PulseDebugger`, () => {
+  const mockFnOn = jest.fn()
+  const props = {
+    navigation: jest.fn(),
+    socketLib: jest.fn(() => ({
+      on: mockFnOn
+    })),
+  }
+
+  const wrapper = shallow(<PulseDebugger {...props} />)
+
   it(`should render without crashing`, () => {
-    const wrapper = shallow(<PulseDebugger />)
     expect(wrapper).toBeTruthy()
+  })
+
+  it(`should render event list`, () => {
+    expect(wrapper.find('#event-list')).toHaveLength(1)
   })
 })

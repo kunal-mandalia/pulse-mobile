@@ -10,20 +10,24 @@ import {
 import CoreLayout from './CoreLayout'
 import io from 'socket.io-client'
 import { pluralise } from '../utils/helper'
+import PropTypes from 'prop-types'
 
 class PulseDebugger extends Component {
-  constructor (props) {
+  constructor (props = {}) {
     super(props)
+    const { connections, events, socket, socketLib } = props
     this.state = {
-      connections: 0,
-      events: [],
-      socket: null,
+      connections: connections || 0,
+      events: events || [],
+      socket: socket || null,
+      socketLib: socketLib || io
     }
   }
 
   componentDidMount () {
-    const socket = io('https://pulse-server-km.herokuapp.com')
-    this.setState({ socket })    
+    const { socketLib } = this.state
+    const socket = socketLib('https://pulse-server-km.herokuapp.com')
+    this.setState({ socket })
     
     socket.on('connectionCount', (connectionCount) => {
       this.setState({ connections: connectionCount })
@@ -40,7 +44,7 @@ class PulseDebugger extends Component {
     const d = new Date(item.timestamp)
     const date = d.toLocaleTimeString()
     return (
-      <View style={styles.listItem}>
+      <View className='render-item' style={styles.listItem}>
         <View style={styles.row}>
           <Text style={styles.listItemType}>{item.type.toUpperCase()}</Text>
           <Text style={styles.listItemValue}>{item.value}</Text>
@@ -57,7 +61,7 @@ class PulseDebugger extends Component {
   _itemSeparatorComponent = () => <View style={styles.separator} />
 
   _listEmptyComponent = () => (
-    <View className='empty-list' style={styles.listEmptyContainer}>
+    <View id='empty-list' className='empty-list' style={styles.listEmptyContainer}>
       <ActivityIndicator />
       <Text style={styles.note}>Listening for events</Text>
     </View>
@@ -74,6 +78,7 @@ class PulseDebugger extends Component {
         </View>
         <View style={[styles.listContainer, {alignItems: hasEvents ? 'flex-start' : 'center'}]}>
           <FlatList
+            id='event-list'
             style={styles.list}
             data={events}
             renderItem={this._renderItem}
@@ -146,5 +151,10 @@ const styles = StyleSheet.create({
     borderColor: '#f5f5f5',
   }
 })
+
+PulseDebugger.propTypes = {
+  navigation: PropTypes.func.isRequired,
+  socketLib: PropTypes.func.isRequired,
+}
 
 export default PulseDebugger
