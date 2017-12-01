@@ -57,7 +57,7 @@ class PulseDebugger extends Component {
   _itemSeparatorComponent = () => <View style={styles.separator} />
 
   _listEmptyComponent = () => (
-    <View style={styles.listEmptyContainer}>
+    <View className='empty-list' style={styles.listEmptyContainer}>
       <ActivityIndicator />
       <Text style={styles.note}>Listening for events</Text>
     </View>
