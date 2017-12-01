@@ -1,7 +1,8 @@
 {
   "expo": {
+    "name": "Pulse Mobile",
     "slug": "pulse-mobile-kvm",
-    "sdkVersion": "21.0.0",
+    "sdkVersion": "22.0.0",
     "privacy": "public",
     "icon": "./assets/logo.png",
     "loading": {
