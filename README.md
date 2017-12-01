@@ -22,7 +22,7 @@ Download and install this project
 MIT
 
 <p align='center'>
-  <img src="./assets/logo.svg" alt="pulse mobile logo" width="240px"/>
+  <img src="./assets/logo.png" alt="pulse mobile logo" width="240px"/>
 </p>
 
 <p align="center">
