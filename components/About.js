@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    fontSize: 18,
-    marginTop: 25,
-    marginBottom: 12,
+    fontSize: 16,
+    marginTop: 45,
+    marginBottom: 15,
   },
   paragraph: {
-    fontSize: 14,
+    fontSize: 12,
     marginHorizontal: 20,
   },
   link: {
