@@ -3,10 +3,12 @@
 Real-time analytics with socket.io inspired by segment.com's debugger. Bootstrapped with create-react-native-app.
 
 ## Demo
+Scan the QR code with your Expo app to get pulse-mobile on phone. You can find more details on the project's [Expo page](https://expo.io/@kunal-mandalia/pulse-mobile-kvm)
 - Emit events from the demo frontend pulse-web SPA: https://pulse-web-km.herokuapp.com/
-- Events appear in app
+- Events appear in the mobile app
 
-<!-- todo: insert app qr code -->
+[![pulse-mobile QR code](/assets/pulse-mobile-qr-code.png)](https://expo.io/@kunal-mandalia/pulse-mobile-kvm)
+
 
 ## Get started
 Download and install this project
