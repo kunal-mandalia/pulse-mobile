@@ -1,5 +1,11 @@
 {
   "expo": {
-    "sdkVersion": "22.0.0"
+    "slug": "pulse-mobile-kvm",
+    "sdkVersion": "21.0.0",
+    "privacy": "public",
+    "icon": "./assets/logo.png",
+    "loading": {
+      "icon": "./assets/logo.png"
+    }
   }
 }
