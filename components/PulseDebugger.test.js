@@ -12,7 +12,7 @@ import renderer from 'react-test-renderer'
 describe(`PulseDebugger`, () => {
   const mockFnOn = jest.fn()
   const props = {
-    navigation: jest.fn(),
+    navigation: {},
     socketLib: jest.fn(() => ({
       on: mockFnOn
     })),

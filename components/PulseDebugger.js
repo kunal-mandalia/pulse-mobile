@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
 })
 
 PulseDebugger.propTypes = {
-  navigation: PropTypes.func.isRequired,
-  socketLib: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
+  socketLib: PropTypes.func,
 }
 
 export default PulseDebugger
