@@ -18,7 +18,7 @@ Download and install this project
 
 ## Run tests
 - `yarn test` runs jest tests in watch mode
-- `yarn test:once` runs tessts one time (used for CI builds)
+- `yarn test:once` runs tests one time (used for CI builds)
 
 ## License
 MIT
